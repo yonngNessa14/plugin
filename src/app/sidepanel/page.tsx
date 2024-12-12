@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { meet, MeetSidePanelClient } from "@googleworkspace/meet-addons/meet.addons";
 import { ACTIVITY_SIDE_PANEL_URL, CLOUD_PROJECT_NUMBER, MAIN_STAGE_URL } from "../constants";
+import Link from "next/link";
 
 /**
  * @see {@link https://developers.google.com/meet/add-ons/guides/overview#side-panel}
@@ -58,6 +59,9 @@ export default function Page() {
         name="starting-color"
         defaultValue="#00ff00"
       />
+      <br />
+      <br />
+      <Link href={"/about"}>Lets go to another page</Link>
       <br />
       <button aria-label="Launch activity for all participants" onClick={startCollaboration}>
         Start activity

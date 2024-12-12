@@ -41,14 +41,14 @@ export const ACTIVITY_SIDE_PANEL_URL = SITE_BASE + "/activitysidepanel";
 //     "addOns": {
 //     "common": {
 //       "name": "Cdial Sample Plugin",
-//       "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733763468/Add_Icon_Logo_ojgqce.webp"
+//       "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733972097/indigenious-icon_ckycxu.png"
 //     },
 //     "meet": {
 //       "web": {
-//         "sidePanelUri": "https://googleworkspace.github.io/meet/animation-next-js/sidepanel",
-//         "addOnOrigins": ["https://googleworkspace.github.io/meet/animation-next-js"],
-//         "darkModeLogoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733763468/Add_Icon_Logo_ojgqce.webp",
-//         "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733763468/Add_Icon_Logo_ojgqce.webp",
+//         "sidePanelUri": "https://plugin-52d00o75e-nelsons-projects-814b47aa.vercel.app",
+//         "addOnOrigins": ["https://plugin-52d00o75e-nelsons-projects-814b47aa.vercel.app"],
+//         "darkModeLogoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733972097/indigenious-icon_ckycxu.png",
+//         "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733972097/indigenious-icon_ckycxu.png",
 //         "supportsScreenSharing": true
 //       }
 //     }
