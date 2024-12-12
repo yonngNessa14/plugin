@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { meet, MeetSidePanelClient } from "@googleworkspace/meet-addons/meet.addons";
-import { CLOUD_PROJECT_NUMBER, SIDE_PANEL_URL } from "./constants";
+import { CLOUD_PROJECT_NUMBER } from "./constants";
 
 export default function App() {
   const [sidePanelClient, setSidePanelClient] = useState<MeetSidePanelClient>();
 
   // Launches the main stage when the main button is clicked.
-  async function startActivity(e: unknown) {
+  async function startActivity() {
     if (!sidePanelClient) {
       throw new Error("Side Panel is not yet initialized!");
     }

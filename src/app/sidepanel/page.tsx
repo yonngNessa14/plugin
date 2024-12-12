@@ -14,7 +14,7 @@ export default function Page() {
    * Starts the add-on activity and passes the selected color to the Main Stage,
    * as part of the activity starting state.
    */
-  async function startCollaboration(e: unknown) {
+  async function startCollaboration() {
     if (!sidePanelClient) {
       throw new Error("Side Panel is not yet initialized!");
     }
