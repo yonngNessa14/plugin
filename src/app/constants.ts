@@ -19,7 +19,7 @@
  */
 export const CLOUD_PROJECT_NUMBER = "903305509493";
 
-export const SITE_BASE = "https://plugin-52d00o75e-nelsons-projects-814b47aa.vercel.app";
+export const SITE_BASE = "https://plugin-one.vercel.app";
 
 /**
  * @see {@link https://developers.google.com/meet/add-ons/guides/overview#main-stage}
@@ -45,8 +45,8 @@ export const ACTIVITY_SIDE_PANEL_URL = SITE_BASE + "/activitysidepanel";
 //     },
 //     "meet": {
 //       "web": {
-//         "sidePanelUri": "https://plugin-52d00o75e-nelsons-projects-814b47aa.vercel.app",
-//         "addOnOrigins": ["https://plugin-52d00o75e-nelsons-projects-814b47aa.vercel.app"],
+//         "sidePanelUri": "https://plugin-one.vercel.app",
+//         "addOnOrigins": ["https://plugin-one.vercel.app"],
 //         "darkModeLogoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733972097/indigenious-icon_ckycxu.png",
 //         "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733972097/indigenious-icon_ckycxu.png",
 //         "supportsScreenSharing": true
