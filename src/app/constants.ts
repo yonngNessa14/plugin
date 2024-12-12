@@ -19,7 +19,7 @@
  */
 export const CLOUD_PROJECT_NUMBER = "903305509493";
 
-export const SITE_BASE = "https://googleworkspace.github.io/meet/animation-next-js";
+export const SITE_BASE = "https://plugin-52d00o75e-nelsons-projects-814b47aa.vercel.app";
 
 /**
  * @see {@link https://developers.google.com/meet/add-ons/guides/overview#main-stage}
