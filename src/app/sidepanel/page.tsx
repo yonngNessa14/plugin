@@ -21,13 +21,20 @@ export default function Page() {
     }
 
     const startingColor = (document.getElementById("starting-color")! as HTMLInputElement).value;
-    await sidePanelClient.startActivity({
-      mainStageUrl: MAIN_STAGE_URL,
-      sidePanelUrl: ACTIVITY_SIDE_PANEL_URL,
-      // Pass the selected color to customize the initial display.
-      additionalData: `{\"startingColor\": \"${startingColor}\"}`,
-    });
-    window.location.replace(ACTIVITY_SIDE_PANEL_URL + window.location.search);
+    try {
+      const colab = await sidePanelClient.startActivity({
+        mainStageUrl: MAIN_STAGE_URL,
+        sidePanelUrl: ACTIVITY_SIDE_PANEL_URL,
+        // Pass the selected color to customize the initial display.
+        additionalData: `{\"startingColor\": \"${startingColor}\"}`,
+      });
+
+      console.log({ colab });
+
+      window.location.replace(ACTIVITY_SIDE_PANEL_URL + window.location.search);
+    } catch (error) {
+      console.log("coll>>>>", { error });
+    }
   }
 
   useEffect(() => {
@@ -36,11 +43,19 @@ export default function Page() {
      * https://developers.google.com/meet/add-ons/reference/websdk/addon_sdk.meetsidepanelclient
      */
     async function initializeSidePanelClient() {
-      const session = await meet.addon.createAddonSession({
-        cloudProjectNumber: CLOUD_PROJECT_NUMBER,
-      });
-      const client = await session.createSidePanelClient();
-      setSidePanelClient(client);
+      try {
+        const session = await meet.addon.createAddonSession({
+          cloudProjectNumber: CLOUD_PROJECT_NUMBER,
+        });
+        console.log({ session });
+
+        const client = await session.createSidePanelClient();
+        console.log({ client });
+
+        setSidePanelClient(client);
+      } catch (error) {
+        console.log({ error });
+      }
     }
     initializeSidePanelClient();
   }, []);
@@ -48,8 +63,8 @@ export default function Page() {
   return (
     <>
       <div>
-        Welcome to Pretty Colors! This is a contrived demo add-on that lets you look at an animation
-        involving your favorite color.
+        Welcome to Cdial Plugin This is a demo add-on that lets you look at an animation involving
+        your favorite color.
       </div>
       <label htmlFor="starting-color">Pick a color you like. Everyone will see this:</label>
       <input
@@ -61,7 +76,7 @@ export default function Page() {
       />
       <br />
       <br />
-      <Link href={"/about"}>Lets go to another page</Link>
+      <Link href={"/about"}>Lets go to about us page</Link>
       <br />
       <button aria-label="Launch activity for all participants" onClick={startCollaboration}>
         Start activity
