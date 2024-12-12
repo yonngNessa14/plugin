@@ -17,7 +17,7 @@
  * manifest and Google Workspace Marketplace listing.
  * @see {@link https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects}
  */
-export const CLOUD_PROJECT_NUMBER = "285788035016";
+export const CLOUD_PROJECT_NUMBER = "903305509493";
 
 export const SITE_BASE = "https://googleworkspace.github.io/meet/animation-next-js";
 
@@ -36,3 +36,21 @@ export const SIDE_PANEL_URL = SITE_BASE + "/sidepanel";
  * @see {@link https://developers.google.com/meet/add-ons/guides/overview#side-panel}
  */
 export const ACTIVITY_SIDE_PANEL_URL = SITE_BASE + "/activitysidepanel";
+
+// {
+//     "addOns": {
+//     "common": {
+//       "name": "Cdial Sample Plugin",
+//       "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733763468/Add_Icon_Logo_ojgqce.webp"
+//     },
+//     "meet": {
+//       "web": {
+//         "sidePanelUri": "https://googleworkspace.github.io/meet/animation-next-js/sidepanel",
+//         "addOnOrigins": ["https://googleworkspace.github.io/meet/animation-next-js"],
+//         "darkModeLogoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733763468/Add_Icon_Logo_ojgqce.webp",
+//         "logoUrl": "https://res.cloudinary.com/dszxa5mey/image/upload/v1733763468/Add_Icon_Logo_ojgqce.webp",
+//         "supportsScreenSharing": true
+//       }
+//     }
+//   }
+// }
