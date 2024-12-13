@@ -44,11 +44,18 @@ export default function Page() {
 
     try {
       const meetingInfo = await sidePanelClient.getMeetingInfo();
+
       console.log({ meetingInfo });
     } catch (error) {
       console.log("meeting>>>>", { error });
     }
   }
+
+  useEffect(() => {
+    sidePanelClient?.on("frameToFrameMessage", (message) => {
+      console.log({ message });
+    });
+  }, [sidePanelClient]);
 
   useEffect(() => {
     /**
@@ -91,6 +98,8 @@ export default function Page() {
       <button aria-label="Launch activity for all participants" onClick={startCollaboration}>
         Start activity
       </button>
+      <br />
+      <br />
       {sidePanelClient && (
         <button aria-label="Get meeting Information" onClick={getMeetingInfo}>
           Get meeting Information
