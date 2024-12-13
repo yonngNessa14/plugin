@@ -37,6 +37,19 @@ export default function Page() {
     }
   }
 
+  async function getMeetingInfo() {
+    if (!sidePanelClient) {
+      throw new Error("Side Panel is not yet initialized!");
+    }
+
+    try {
+      const meetingInfo = await sidePanelClient.getMeetingInfo();
+      console.log({ meetingInfo });
+    } catch (error) {
+      console.log("meeting>>>>", { error });
+    }
+  }
+
   useEffect(() => {
     /**
      * Initializes the Add-on Side Panel Client.
@@ -62,10 +75,7 @@ export default function Page() {
 
   return (
     <>
-      <div>
-        Welcome to Cdial Plugin This is a demo add-on that lets you look at an animation involving
-        your favorite color.
-      </div>
+      <div>Welcome to Cdial Plugin This is a demo add-on.</div>
       <label htmlFor="starting-color">Pick a color you like. Everyone will see this:</label>
       <input
         aria-label="Color picker for animation in main stage"
@@ -81,6 +91,11 @@ export default function Page() {
       <button aria-label="Launch activity for all participants" onClick={startCollaboration}>
         Start activity
       </button>
+      {sidePanelClient && (
+        <button aria-label="Get meeting Information" onClick={getMeetingInfo}>
+          Get meeting Information
+        </button>
+      )}
     </>
   );
 }
