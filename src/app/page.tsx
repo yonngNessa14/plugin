@@ -83,14 +83,14 @@ export default function App() {
   };
 
   // Launches the main stage when the main button is clicked.
-  async function startActivity() {
-    if (!sidePanelClient) {
-      throw new Error("Side Panel is not yet initialized!");
-    }
-    await sidePanelClient.startActivity({
-      mainStageUrl: "MAIN_STAGE_URL",
-    });
-  }
+  // async function startActivity() {
+  //   if (!sidePanelClient) {
+  //     throw new Error("Side Panel is not yet initialized!");
+  //   }
+  //   await sidePanelClient.startActivity({
+  //     mainStageUrl: "MAIN_STAGE_URL",
+  //   });
+  // }
 
   /**
    * Prepares the Add-on Side Panel Client.
