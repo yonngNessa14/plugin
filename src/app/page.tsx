@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
-import { meet, MeetSidePanelClient } from "@googleworkspace/meet-addons/meet.addons";
+import { meet } from "@googleworkspace/meet-addons/meet.addons";
 import { CLOUD_PROJECT_NUMBER } from "./constants";
 import { translate } from "google-translate-api-x";
 
 export default function App() {
-  const [sidePanelClient, setSidePanelClient] = useState<MeetSidePanelClient>();
+  // const [sidePanelClient, setSidePanelClient] = useState<MeetSidePanelClient>();
 
   const [text, setText] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -103,7 +103,7 @@ export default function App() {
         });
         console.log({ session });
 
-        setSidePanelClient(await session.createSidePanelClient());
+        // setSidePanelClient(await session.createSidePanelClient());
       } catch (error) {
         console.log({ error });
       }
