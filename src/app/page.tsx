@@ -15,6 +15,7 @@ export default function App() {
 
   const startListening = async () => {
     if (!recognitionRef.current) {
+      // @ts-expect-error here
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRecognition) {
         alert("Speech Recognition API is not supported in this browser.");
@@ -31,7 +32,7 @@ export default function App() {
         console.log("Speech recognition started");
         setIsListening(true);
       };
-
+      // @ts-expect-error here
       recognition.onresult = async (event) => {
         let finalTranscript = "";
         let interimTranscript = "";
@@ -49,6 +50,7 @@ export default function App() {
         console.log({ finalTranscript });
 
         try {
+          // @ts-expect-error here
           const res = await translate("I speak french", { to: "fr", client: "gtx" });
           console.log({ res });
         } catch (error) {
@@ -58,7 +60,7 @@ export default function App() {
         // Store the interim transcript temporarily for display
         interimTranscriptRef.current = interimTranscript;
       };
-
+      // @ts-expect-error here
       recognition.onerror = (event) => {
         console.error("Speech recognition error:", event.error);
       };
@@ -70,12 +72,13 @@ export default function App() {
         }
       };
     }
-
+    // @ts-expect-error here
     recognitionRef.current.start();
   };
 
   const stopListening = () => {
     if (recognitionRef.current) {
+      // @ts-expect-error here
       recognitionRef.current.stop();
       recognitionRef.current = null; // Clear the recognition instance
       setIsListening(false);
