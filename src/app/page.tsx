@@ -3,16 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { meet, MeetSidePanelClient } from "@googleworkspace/meet-addons/meet.addons";
 import { CLOUD_PROJECT_NUMBER } from "./constants";
-import {
-  translate,
-  Translator,
-  speak,
-  singleTranslate,
-  batchTranslate,
-  languages,
-  isSupported,
-  getCode,
-} from "google-translate-api-x";
+import { translate } from "google-translate-api-x";
 
 export default function App() {
   const [sidePanelClient, setSidePanelClient] = useState<MeetSidePanelClient>();
