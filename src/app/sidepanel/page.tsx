@@ -108,3 +108,6 @@ export default function Page() {
     </>
   );
 }
+// To join the video meeting, click this link: https://meet.google.com/hkg-zfnd-abq
+// Otherwise, to join by phone, dial +27 10 823 1276 and enter this PIN: 495 332 678#
+// To view more phone numbers, click this link: https://tel.meet/hkg-zfnd-abq?hs=5

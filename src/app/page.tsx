@@ -1,11 +1,95 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { meet, MeetSidePanelClient } from "@googleworkspace/meet-addons/meet.addons";
 import { CLOUD_PROJECT_NUMBER } from "./constants";
+import {
+  translate,
+  Translator,
+  speak,
+  singleTranslate,
+  batchTranslate,
+  languages,
+  isSupported,
+  getCode,
+} from "google-translate-api-x";
 
 export default function App() {
   const [sidePanelClient, setSidePanelClient] = useState<MeetSidePanelClient>();
+
+  const [text, setText] = useState("");
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
+  const interimTranscriptRef = useRef("");
+
+  const startListening = async () => {
+    if (!recognitionRef.current) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!SpeechRecognition) {
+        alert("Speech Recognition API is not supported in this browser.");
+        return;
+      }
+
+      const recognition = new SpeechRecognition();
+      recognition.lang = "en-US";
+      recognition.interimResults = true;
+      recognition.continuous = true; // Enable continuous listening
+      recognitionRef.current = recognition;
+
+      recognition.onstart = () => {
+        console.log("Speech recognition started");
+        setIsListening(true);
+      };
+
+      recognition.onresult = async (event) => {
+        let finalTranscript = "";
+        let interimTranscript = "";
+
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript + " ";
+          } else {
+            interimTranscript += event.results[i][0].transcript;
+          }
+        }
+
+        // Append final transcript to the main text
+        setText((prev) => prev + finalTranscript);
+        console.log({ finalTranscript });
+
+        try {
+          const res = await translate("I speak french", { to: "fr", client: "gtx" });
+          console.log({ res });
+        } catch (error) {
+          console.log({ error });
+        }
+
+        // Store the interim transcript temporarily for display
+        interimTranscriptRef.current = interimTranscript;
+      };
+
+      recognition.onerror = (event) => {
+        console.error("Speech recognition error:", event.error);
+      };
+
+      recognition.onend = () => {
+        if (isListening) {
+          console.log("Speech recognition restarted due to silence");
+          recognition.start(); // Restart listening
+        }
+      };
+    }
+
+    recognitionRef.current.start();
+  };
+
+  const stopListening = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+      recognitionRef.current = null; // Clear the recognition instance
+      setIsListening(false);
+    }
+  };
 
   // Launches the main stage when the main button is clicked.
   async function startActivity() {
@@ -37,8 +121,17 @@ export default function App() {
 
   return (
     <>
-      <div>This is the Add-on Side Panel. Only you can see this.</div>
-      <button onClick={startActivity}>Launch Activity in Main Stage.</button>
+      <h1>Continuous Speech to Text</h1>
+      <button onClick={startListening} disabled={isListening}>
+        {isListening ? "Listening..." : "Start Listening"}
+      </button>
+      <button onClick={stopListening} disabled={!isListening}>
+        Stop Listening
+      </button>
+      <p>Recognized Text:</p>
+      <div style={{ border: "1px solid #ccc", padding: "10px", minHeight: "100px" }}>
+        {text + interimTranscriptRef.current} {/* Display both final and interim transcripts */}
+      </div>
     </>
   );
 }
